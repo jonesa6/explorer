@@ -3,6 +3,17 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         mySprite.y += -5
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile4`, function (sprite, location) {
+    tiles.setCurrentTilemap(tilemap`level2`)
+    mySprite.x = 10
+    mySprite.y = 32
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile3`, function (sprite, location) {
+    sprites.destroyAllSpritesOfKind(SpriteKind.Food)
+    mySprite.x = randint(255, 600)
+    mySprite.y = 96
+    tiles.setCurrentTilemap(tilemap`level4`)
+})
 sprites.onOverlap(SpriteKind.Food, SpriteKind.Player, function (sprite, otherSprite) {
     if (Math.percentChance(50)) {
         mySprite2.ax = 200
